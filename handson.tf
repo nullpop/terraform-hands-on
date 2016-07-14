@@ -83,7 +83,7 @@ resource "aws_security_group" "allow_handson" {
 }
 
 #EC2
-resource "aws_instance" "demo_ec2" {
+resource "aws_instance" "ec2" {
   depends_on = ["aws_internet_gateway.igw"]
   ami = "" ##
   key_name = "" ##
@@ -94,4 +94,8 @@ resource "aws_instance" "demo_ec2" {
   tags {
     Name = "" ##
   }
+}
+
+output "URL" {
+    value = "http://${aws_instance.ec2.public_ip}/"
 }
