@@ -85,7 +85,7 @@ resource "aws_security_group" "allow_handson" {
 #EC2
 resource "aws_instance" "ec2" {
   depends_on = ["aws_internet_gateway.igw"]
-  ami = "" ##
+  ami = "ami-374db956"
   key_name = "" ##
   associate_public_ip_address = true
   subnet_id = "${aws_subnet.public1.id}"
