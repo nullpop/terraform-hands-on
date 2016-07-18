@@ -9,7 +9,7 @@ provider "aws" {
 
 #VPC
 resource "aws_vpc" "demo_vpc" {
-  cidr_block = ""  ##
+  cidr_block = ""  ##ここにVPCのCIDRを指定
   tags {
         Name = "hands_on_vpc"
     }
@@ -18,7 +18,7 @@ resource "aws_vpc" "demo_vpc" {
 # public and web subnet
 resource "aws_subnet" "public1" {
   vpc_id = "${aws_vpc.demo_vpc.id}"
-  cidr_block = "" ##
+  cidr_block = "" ##ここにサブネットのCIDRを指定
   availability_zone = "ap-northeast-1a"
 
   tags {
@@ -28,7 +28,7 @@ resource "aws_subnet" "public1" {
 
 resource "aws_subnet" "public2" {
   vpc_id = "${aws_vpc.demo_vpc.id}"
-  cidr_block = "" ##
+  cidr_block = "" ##ここにサブネットのCIDRを指定
     availability_zone = "ap-northeast-1c"
 
   tags {
@@ -91,13 +91,13 @@ resource "aws_security_group" "allow_handson" {
 resource "aws_instance" "ec2" {
   depends_on = ["aws_internet_gateway.igw"]
   ami = "ami-374db956"
-  key_name = "" ##
+  key_name = "" ##ここに最初に作ったキーペアの名前を入力
   associate_public_ip_address = true
   subnet_id = "${aws_subnet.public1.id}"
   vpc_security_group_ids = ["${aws_security_group.allow_handson.id}"]
-  instance_type = "" ##
+  instance_type = "" ##ここに起動したいインスタンスタイプを入力 (ex. t2.micro など)
   tags {
-    Name = "" ##
+    Name = "" ##ここにインスタンス名を英数で入力
   }
 }
 
