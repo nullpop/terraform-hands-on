@@ -2,6 +2,7 @@
 
 yum install -y httpd wget unzip git
 chkconfig httpd on
+service httpd start
 
 cd /tmp
 git clone https://github.com/nullpop/terraform-hands-on-html.git
