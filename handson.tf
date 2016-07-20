@@ -95,6 +95,7 @@ resource "aws_instance" "ec2" {
   associate_public_ip_address = true
   subnet_id = "${aws_subnet.public1.id}"
   vpc_security_group_ids = ["${aws_security_group.allow_handson.id}"]
+  user_data = "${file("userdata.sh")}"
   instance_type = "" ##ここに起動したいインスタンスタイプを入力 (ex. t2.micro など)
   tags {
     Name = "" ##ここにインスタンス名を英数で入力
